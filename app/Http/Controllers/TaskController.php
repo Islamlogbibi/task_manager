@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function index(){
+        $tasks = Task::all();
+        return response()->json($tasks);
+    }
     public function store(Request $request){
-        Task::create([
+        $create = Task::create([
             'title'=>$request->title,
             'description'=>$request->description,
             'praiority'=>$request->praiority
         ]);
+        return response()->json($create);
     }
 }
