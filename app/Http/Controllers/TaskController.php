@@ -17,6 +17,12 @@ class TaskController extends Controller
             'description'=>$request->description,
             'praiority'=>$request->praiority
         ]);
-        return response()->json($create);
+        return response()->json($create, 201);
+    }
+
+    public function update(Request $request, $id){
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+        return response()->json($task, 200);
     }
 }
